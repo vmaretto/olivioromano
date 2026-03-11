@@ -113,8 +113,8 @@ main {
 }
 
 #olivio-frame {
-    width: 380px;
-    height: 520px;
+    width: 320px;
+    height: 450px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 12px 40px rgba(0,0,0,0.15);
