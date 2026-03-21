@@ -19,7 +19,8 @@
         </nav>
     </header>
 
-    <main>
+    <!-- LANDING VIEW -->
+    <main id="landing-view">
         <section class="avatar-section">
             <div class="intro">
                 <h1>Ciao, sono <span>Olivio Romano</span></h1>
@@ -30,6 +31,115 @@
                     <div class="feature">🏆 Qualità IGP</div>
                     <div class="feature">👨‍🌾 Produttori</div>
                 </div>
+                
+                <!-- CTA Buttons -->
+                <div class="cta-buttons">
+                    <button class="cta-chat" onclick="showChat()">
+                        💬 Chatta con Olivio
+                        <span class="badge-free">Gratuito</span>
+                    </button>
+                    <button class="cta-avatar" onclick="showEmailGate()">
+                        🎥 Parla con l'Avatar
+                        <span class="badge-premium">Premium</span>
+                    </button>
+                </div>
+                <p class="cta-hint">La chat testuale è sempre gratuita. L'avatar interattivo richiede registrazione.</p>
+            </div>
+            <div class="avatar-preview">
+                <img src="https://create-images-results.d-id.com/DefaultPresenters/Matan_sitting_bg_m/v1_matan_bg_sitting_m.png" 
+                     alt="Olivio Romano" 
+                     class="avatar-image"
+                     onerror="this.parentElement.innerHTML='<div class=\'avatar-placeholder\'>🧑‍🌾</div>'">
+            </div>
+        </section>
+    </main>
+
+    <!-- CHAT VIEW -->
+    <main id="chat-view" class="hidden">
+        <div class="chat-container">
+            <div class="chat-header">
+                <button class="back-btn" onclick="showLanding()">← Indietro</button>
+                <div class="chat-title">
+                    <span class="chat-avatar-icon">🧑‍🌾</span>
+                    <div>
+                        <strong>Olivio Romano</strong>
+                        <span class="status">Online</span>
+                    </div>
+                </div>
+                <span class="mode-badge">💬 Chat</span>
+            </div>
+            
+            <div class="messages" id="messages">
+                <div class="message assistant">
+                    <span class="msg-avatar">🧑‍🌾</span>
+                    <div class="msg-content">
+                        Ciao! Sono Olivio Romano, il tuo assistente virtuale per l'Olio di Roma IGP. 🫒<br><br>
+                        Cosa vorresti sapere? Posso parlarti del territorio, dei produttori certificati, delle caratteristiche dell'olio IGP, o delle tradizioni olivicole romane.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quick-questions" id="quick-questions">
+                <button onclick="askQuestion('Quali sono le zone di produzione?')">Quali sono le zone di produzione?</button>
+                <button onclick="askQuestion('Come riconoscere un olio IGP autentico?')">Come riconoscere un olio IGP autentico?</button>
+                <button onclick="askQuestion('Chi sono i produttori certificati?')">Chi sono i produttori certificati?</button>
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="chat-input" placeholder="Scrivi un messaggio..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Invia</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- EMAIL GATE VIEW -->
+    <main id="email-gate-view" class="hidden">
+        <div class="gate-card">
+            <button class="back-btn-floating" onclick="showLanding()">← Indietro</button>
+            <div class="gate-content">
+                <span class="gate-badge">🎥 Esperienza Premium</span>
+                <h2>Parla con Olivio Romano</h2>
+                <p>Accedi all'avatar interattivo per un'esperienza immersiva. Potrai conversare a voce con Olivio.</p>
+                
+                <div class="gate-features">
+                    <span>🎤 Voce</span>
+                    <span>🎬 Avatar</span>
+                    <span>⚡ Real-time</span>
+                </div>
+                
+                <form onsubmit="submitEmail(event)">
+                    <div class="form-group">
+                        <label>Nome (opzionale)</label>
+                        <input type="text" id="gate-name" placeholder="Come ti chiami?">
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="gate-email" placeholder="la.tua@email.com" required>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="gate-consent" required>
+                        <label for="gate-consent">Acconsento al trattamento dei dati per accedere al servizio avatar.</label>
+                    </div>
+                    <button type="submit" class="gate-submit">Accedi all'Avatar →</button>
+                </form>
+                <p class="gate-privacy">🔒 I tuoi dati sono al sicuro.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- AVATAR VIEW -->
+    <main id="avatar-view" class="hidden">
+        <section class="avatar-section">
+            <div class="intro">
+                <button class="back-btn" onclick="showLanding()">← Indietro</button>
+                <h1>Parla con <span>Olivio Romano</span></h1>
+                <p>Clicca sul microfono nell'avatar per iniziare a parlare.</p>
+                <div class="features">
+                    <div class="feature">🫒 Territorio</div>
+                    <div class="feature">🏆 Qualità IGP</div>
+                    <div class="feature">👨‍🌾 Produttori</div>
+                </div>
+                <p class="user-info" id="user-info"></p>
             </div>
             <div id="olivio-frame"></div>
         </section>
@@ -39,15 +149,138 @@
         <p>© Copyright 2026 - CONSORZIO OLIO DI ROMA IGP | C.F.: 96526190580 | REA: RM-1668364 | Privacy & Cookie Policy</p>
     </footer>
 
-    <!-- D-ID Avatar -->
-    <script type="module"
-        src="https://agent.d-id.com/v2/index.js"
-        data-mode="full"
-        data-client-key="Z29vZ2xlLW9hdXRoMnwxMDc3Nzg5MzU1NDIxMDc4MjMwMjU6bW5fZmdGRVQ5Zk1QbW1fUFJ1dUtJ"
-        data-agent-id="v2_agt_AvotBcRU"
-        data-name="did-agent"
-        data-monitor="true"
-        data-target-id="olivio-frame">
+    <script>
+        // View management
+        function hideAllViews() {
+            document.getElementById('landing-view').classList.add('hidden');
+            document.getElementById('chat-view').classList.add('hidden');
+            document.getElementById('email-gate-view').classList.add('hidden');
+            document.getElementById('avatar-view').classList.add('hidden');
+        }
+
+        function showLanding() {
+            hideAllViews();
+            document.getElementById('landing-view').classList.remove('hidden');
+        }
+
+        function showChat() {
+            hideAllViews();
+            document.getElementById('chat-view').classList.remove('hidden');
+            document.getElementById('chat-input').focus();
+        }
+
+        function showEmailGate() {
+            hideAllViews();
+            document.getElementById('email-gate-view').classList.remove('hidden');
+        }
+
+        function showAvatar(email, name) {
+            hideAllViews();
+            document.getElementById('avatar-view').classList.remove('hidden');
+            document.getElementById('user-info').textContent = `Benvenuto, ${name || 'visitatore'}!`;
+            
+            // Load D-ID avatar
+            loadDIDAvatar();
+        }
+
+        function loadDIDAvatar() {
+            const frame = document.getElementById('olivio-frame');
+            if (frame.querySelector('script')) return; // Already loaded
+            
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'https://agent.d-id.com/v2/index.js';
+            script.setAttribute('data-mode', 'full');
+            script.setAttribute('data-client-key', 'Z29vZ2xlLW9hdXRoMnwxMDc3Nzg5MzU1NDIxMDc4MjMwMjU6bW5fZmdGRVQ5Zk1QbW1fUFJ1dUtJ');
+            script.setAttribute('data-agent-id', 'v2_agt_AvotBcRU');
+            script.setAttribute('data-name', 'did-agent');
+            script.setAttribute('data-monitor', 'true');
+            frame.appendChild(script);
+        }
+
+        // Email gate
+        function submitEmail(e) {
+            e.preventDefault();
+            const email = document.getElementById('gate-email').value;
+            const name = document.getElementById('gate-name').value;
+            
+            // TODO: Save to backend
+            console.log('Email submitted:', email, name);
+            
+            showAvatar(email, name);
+        }
+
+        // Chat functionality
+        const responses = [
+            "L'Olio di Roma IGP viene prodotto nelle zone collinari del Lazio, principalmente nelle province di Roma, Rieti, Viterbo e Latina. Le olive vengono raccolte tra ottobre e dicembre.",
+            "Il Consorzio Olio di Roma IGP conta oltre 50 aziende certificate che garantiscono standard qualitativi elevati e tracciabilità completa.",
+            "Le cultivar principali sono Itrana, Carboncella, Moraiolo e Leccino. L'olio ha un colore verde-oro e un sapore fruttato con note leggermente piccanti.",
+            "La certificazione IGP garantisce che l'olio sia prodotto, trasformato e confezionato nel territorio designato, seguendo un disciplinare rigoroso.",
+            "Per riconoscere un olio IGP autentico, cerca il bollino IGP sulla bottiglia e verifica che il produttore sia nel nostro elenco ufficiale sul sito olioromaigp.it."
+        ];
+
+        function addMessage(content, isUser) {
+            const messages = document.getElementById('messages');
+            const div = document.createElement('div');
+            div.className = `message ${isUser ? 'user' : 'assistant'}`;
+            
+            if (!isUser) {
+                div.innerHTML = `<span class="msg-avatar">🧑‍🌾</span><div class="msg-content">${content}</div>`;
+            } else {
+                div.innerHTML = `<div class="msg-content">${content}</div>`;
+            }
+            
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function showTyping() {
+            const messages = document.getElementById('messages');
+            const div = document.createElement('div');
+            div.className = 'message assistant typing-indicator';
+            div.id = 'typing';
+            div.innerHTML = `<span class="msg-avatar">🧑‍🌾</span><div class="msg-content"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>`;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+
+        function askQuestion(question) {
+            document.getElementById('quick-questions').style.display = 'none';
+            addMessage(question, true);
+            showTyping();
+            
+            setTimeout(() => {
+                hideTyping();
+                const response = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(response, false);
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            document.getElementById('quick-questions').style.display = 'none';
+            addMessage(text, true);
+            input.value = '';
+            showTyping();
+            
+            setTimeout(() => {
+                hideTyping();
+                const response = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(response, false);
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
     </script>
 </body>
 </html>
