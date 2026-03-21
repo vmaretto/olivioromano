@@ -2,158 +2,256 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Olivio Romano - Assistente Virtuale | Olio di Roma IGP</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- HEADER -->
     <header>
-        <a href="https://www.olioromaigp.it" class="logo">
-            <img src="https://www.olioromaigp.it/images/logo.png" alt="Olio di Roma IGP" onerror="this.style.display='none'">
+        <a href="https://www.olioromaigp.it" class="logo" aria-label="Vai al sito Olio di Roma IGP">
+            <img src="https://www.olioromaigp.it/images/logo.png" alt="Olio di Roma IGP"
+                 onerror="this.outerHTML='<span class=\'logo-fallback\'>Olio di Roma <strong>IGP</strong></span>'">
         </a>
-        <nav>
-            <a href="https://www.olioromaigp.it" class="btn-back">← Torna al sito</a>
-        </nav>
+        <a href="https://www.olioromaigp.it" class="header-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            olioromaigp.it
+        </a>
     </header>
 
+    <!-- MAIN LAYOUT -->
     <main>
-        <!-- LANDING -->
-        <section id="landing-section" class="avatar-section">
-            <div class="intro">
-                <h1>Ciao, sono <span>Olivio Romano</span></h1>
-                <p>Il tuo assistente virtuale per scoprire tutto sull'Olio di Roma IGP.</p>
-                <p>Chiedimi informazioni sulla produzione, le aziende certificate e la tradizione dell'olio extravergine del nostro territorio.</p>
-                <div class="features">
-                    <div class="feature">🫒 Territorio</div>
-                    <div class="feature">🏆 Qualità IGP</div>
-                    <div class="feature">👨‍🌾 Produttori</div>
+        <!-- LEFT: OLIVIO PANEL -->
+        <aside class="olivio-panel" id="olivio-panel">
+            <!-- Static view (before email) -->
+            <div class="panel-static" id="panel-static">
+                <div class="olivio-hero">
+                    <img src="olivio-character.jpg" alt="Olivio Romano" class="olivio-hero-img">
+                    <div class="olivio-hero-overlay">
+                        <div class="olivio-badge">
+                            <span class="pulse-dot"></span>
+                            Online
+                        </div>
+                    </div>
                 </div>
-                <div class="cta-buttons">
-                    <button class="cta-btn cta-primary" onclick="showChat()">
-                        💬 Chatta con Olivio
-                        <span class="badge-free">Gratuito</span>
-                    </button>
-                    <button class="cta-btn cta-secondary" onclick="showGate()">
-                        🎥 Parla con l'Avatar
-                        <span class="badge-premium">Premium</span>
-                    </button>
+                <div class="olivio-info">
+                    <h1>Olivio Romano</h1>
+                    <p class="olivio-role">Assistente Virtuale</p>
+                    <p class="olivio-desc">Il tuo esperto dell'Olio di Roma IGP. Chiedimi tutto su territorio, produttori certificati e tradizione olearia.</p>
+                    <div class="olivio-tags">
+                        <span class="tag">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Territorio
+                        </span>
+                        <span class="tag">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            Qualita IGP
+                        </span>
+                        <span class="tag">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            Produttori
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-divider"></div>
+                <!-- Upgrade CTA -->
+                <div class="upgrade-section" id="upgrade-section">
+                    <div class="upgrade-banner" id="upgrade-banner" onclick="showEmailForm()" role="button" tabindex="0">
+                        <div class="upgrade-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        </div>
+                        <div class="upgrade-text">
+                            <strong>Parla con l'Avatar</strong>
+                            <span>Video conversazione interattiva con Olivio</span>
+                        </div>
+                        <svg class="upgrade-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                    <!-- Email form (toggled) -->
+                    <form class="email-form" id="email-form" onsubmit="submitEmail(event)">
+                        <button type="button" class="email-back" onclick="hideEmailForm()">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                            Indietro
+                        </button>
+                        <p class="email-title">Accedi all'Avatar interattivo</p>
+                        <p class="email-subtitle">Inserisci la tua email per attivare la video conversazione con Olivio Romano.</p>
+                        <input type="text" id="gate-name" placeholder="Il tuo nome (opzionale)" autocomplete="given-name">
+                        <input type="email" id="gate-email" placeholder="La tua email" required autocomplete="email">
+                        <label class="checkbox-row">
+                            <input type="checkbox" required>
+                            <span>Accetto il trattamento dati</span>
+                        </label>
+                        <button type="submit" class="btn-submit">
+                            Avvia Avatar
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        </button>
+                    </form>
                 </div>
             </div>
-            <div class="preview-card">
-                <img src="olivio-avatar.jpg" alt="Olivio Romano" class="preview-img">
-                <p class="preview-label">Olivio Romano</p>
-            </div>
-        </section>
 
-        <!-- CHAT -->
-        <section id="chat-section" class="chat-section" style="display:none">
+        </aside>
+
+        <!-- RIGHT: CHAT -->
+        <section class="chat-area">
             <div class="chat-container">
-                <div class="chat-header">
-                    <button onclick="showLanding()">← Indietro</button>
-                    <div class="chat-title">
-                        <img src="olivio-avatar.jpg" alt="" class="chat-avatar-img">
-                        <div>
-                            <strong>Olivio Romano</strong>
-                            <span>Online</span>
-                        </div>
+                <!-- Mobile header -->
+                <div class="chat-mobile-header">
+                    <button class="mobile-toggle" onclick="togglePanel()" aria-label="Info Olivio">
+                        <img src="olivio-head.jpg" alt="" class="mobile-thumb">
+                    </button>
+                    <div class="mobile-info">
+                        <strong>Olivio Romano</strong>
+                        <span><span class="pulse-dot small"></span> Online</span>
                     </div>
-                    <span class="chat-badge">💬 Chat</span>
+                    <button class="mobile-video-btn" onclick="openPanel(); setTimeout(showEmailForm, 300)" aria-label="Avatar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                    </button>
                 </div>
+
+                <!-- Messages -->
                 <div class="messages" id="messages">
-                    <div class="message assistant">
-                        <img src="olivio-avatar.jpg" alt="" class="msg-avatar">
-                        <div class="msg-content">
-                            Ciao! Sono Olivio Romano, il tuo assistente per l'Olio di Roma IGP. 🫒<br><br>
-                            Cosa vorresti sapere? Posso parlarti del territorio, dei produttori certificati, o delle caratteristiche dell'olio.
+                    <div class="date-sep"><span>Oggi</span></div>
+                    <div class="message assistant animate-in">
+                        <img src="olivio-head.jpg" alt="" class="msg-avatar">
+                        <div class="msg-bubble">
+                            <div class="msg-content">
+                                Ciao! Sono <strong>Olivio Romano</strong>, il tuo assistente per l'Olio di Roma IGP.<br><br>
+                                Cosa vorresti sapere? Posso parlarti del territorio, dei produttori certificati, o delle caratteristiche dell'olio extravergine della nostra tradizione.
+                            </div>
+                            <span class="msg-time">Adesso</span>
                         </div>
                     </div>
                 </div>
-                <div class="quick-questions">
-                    <button onclick="askQuestion('Quali sono le zone di produzione?')">Zone di produzione</button>
-                    <button onclick="askQuestion('Come riconosco un olio IGP?')">Riconoscere IGP</button>
-                    <button onclick="askQuestion('Chi sono i produttori?')">Produttori</button>
+
+                <!-- Quick Questions -->
+                <div class="quick-questions" id="quick-questions">
+                    <span class="quick-label">Domande suggerite</span>
+                    <div class="quick-row">
+                        <button onclick="askQuestion('Quali sono le zone di produzione dell\'Olio di Roma IGP?')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Zone di produzione
+                        </button>
+                        <button onclick="askQuestion('Come posso riconoscere un olio IGP autentico?')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            Riconoscere l'IGP
+                        </button>
+                        <button onclick="askQuestion('Chi sono i produttori certificati del Consorzio?')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            Produttori certificati
+                        </button>
+                        <button onclick="askQuestion('Quali cultivar vengono utilizzate per l\'Olio di Roma IGP?')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Cultivar e caratteristiche
+                        </button>
+                    </div>
                 </div>
-                <div class="input-area">
-                    <input type="text" id="chat-input" placeholder="Scrivi un messaggio..." onkeypress="if(event.key==='Enter')sendMessage()">
-                    <button onclick="sendMessage()">Invia</button>
+
+                <!-- Input -->
+                <div class="input-bar">
+                    <input type="text" id="chat-input" placeholder="Scrivi un messaggio a Olivio..."
+                           onkeypress="if(event.key==='Enter')sendMessage()" autocomplete="off">
+                    <button onclick="sendMessage()" class="send-btn" aria-label="Invia">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
                 </div>
             </div>
         </section>
-
-        <!-- EMAIL GATE -->
-        <section id="gate-section" class="gate-section" style="display:none">
-            <div class="gate-card">
-                <button class="gate-back" onclick="showLanding()">← Indietro</button>
-                <img src="olivio-avatar.jpg" alt="Olivio" class="gate-avatar">
-                <h2>Parla con Olivio Romano</h2>
-                <p>Accedi all'avatar interattivo per un'esperienza immersiva.</p>
-                <form onsubmit="submitGate(event)">
-                    <input type="text" id="gate-name" placeholder="Il tuo nome (opzionale)">
-                    <input type="email" id="gate-email" placeholder="La tua email" required>
-                    <label class="checkbox-label">
-                        <input type="checkbox" required>
-                        Accetto il trattamento dati
-                    </label>
-                    <button type="submit">Accedi all'Avatar →</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- AVATAR PREMIUM -->
-        <section id="avatar-section" class="avatar-section" style="display:none">
-            <div class="intro">
-                <button class="back-btn-inline" onclick="showLanding()">← Indietro</button>
-                <h1>Parla con <span>Olivio Romano</span></h1>
-                <p>Clicca sul microfono per iniziare la conversazione.</p>
-                <div class="features">
-                    <div class="feature">🫒 Territorio</div>
-                    <div class="feature">🏆 Qualità IGP</div>
-                    <div class="feature">👨‍🌾 Produttori</div>
+        <!-- AVATAR PAGE (full-screen, hidden by default) -->
+        <section class="avatar-page" id="avatar-page">
+            <div class="avatar-page-left">
+                <button class="avatar-page-back" onclick="closeAvatar()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    Torna alla Chat
+                </button>
+                <div class="avatar-page-hero">
+                    <img src="olivio-head.jpg" alt="Olivio Romano" class="avatar-page-img">
                 </div>
+                <h2>Parla con <span>Olivio Romano</span></h2>
+                <p class="avatar-page-subtitle">Stai conversando con l'avatar interattivo. Clicca sul microfono per iniziare a parlare con Olivio.</p>
+                <div class="avatar-page-features">
+                    <div class="avatar-feature">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                        <div>
+                            <strong>Conversazione vocale</strong>
+                            <span>Parla direttamente con Olivio in tempo reale</span>
+                        </div>
+                    </div>
+                    <div class="avatar-feature">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        <div>
+                            <strong>Avatar animato</strong>
+                            <span>Olivio risponde con espressioni e gesti naturali</span>
+                        </div>
+                    </div>
+                    <div class="avatar-feature">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                        <div>
+                            <strong>Esperto certificato</strong>
+                            <span>Risposte accurate sull'Olio di Roma IGP</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.olioromaigp.it" class="avatar-page-link" target="_blank">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Visita olioromaigp.it
+                </a>
             </div>
             <div id="olivio-frame"></div>
         </section>
     </main>
 
+    <!-- Mobile overlay -->
+    <div class="panel-backdrop" id="panel-backdrop" onclick="closePanel()"></div>
+
     <footer>
-        <p>© Copyright 2026 - CONSORZIO OLIO DI ROMA IGP | C.F.: 96526190580 | REA: RM-1668364 | Privacy & Cookie Policy</p>
+        <p>&copy; 2026 Consorzio Olio di Roma IGP &middot; C.F.: 96526190580 &middot; REA: RM-1668364 &middot; Privacy &amp; Cookie Policy</p>
     </footer>
 
-    <!-- D-ID Avatar (caricato solo quando serve) -->
     <script>
-        function showLanding() {
-            document.getElementById('landing-section').style.display = 'flex';
-            document.getElementById('chat-section').style.display = 'none';
-            document.getElementById('gate-section').style.display = 'none';
-            document.getElementById('avatar-section').style.display = 'none';
+        // ─── Panel (mobile) ───
+        function togglePanel() {
+            document.getElementById('olivio-panel').classList.toggle('open');
+            document.getElementById('panel-backdrop').classList.toggle('active');
+        }
+        function openPanel() {
+            document.getElementById('olivio-panel').classList.add('open');
+            document.getElementById('panel-backdrop').classList.add('active');
+        }
+        function closePanel() {
+            document.getElementById('olivio-panel').classList.remove('open');
+            document.getElementById('panel-backdrop').classList.remove('active');
         }
 
-        function showChat() {
-            document.getElementById('landing-section').style.display = 'none';
-            document.getElementById('chat-section').style.display = 'flex';
-            document.getElementById('gate-section').style.display = 'none';
-            document.getElementById('avatar-section').style.display = 'none';
-            document.getElementById('chat-input').focus();
+        // ─── Email / Avatar ───
+        function showEmailForm() {
+            document.getElementById('upgrade-banner').style.display = 'none';
+            document.getElementById('email-form').style.display = 'flex';
         }
-
-        function showGate() {
-            document.getElementById('landing-section').style.display = 'none';
-            document.getElementById('chat-section').style.display = 'none';
-            document.getElementById('gate-section').style.display = 'flex';
-            document.getElementById('avatar-section').style.display = 'none';
+        function hideEmailForm() {
+            document.getElementById('email-form').style.display = 'none';
+            document.getElementById('upgrade-banner').style.display = 'flex';
         }
-
-        function showAvatar() {
-            document.getElementById('landing-section').style.display = 'none';
-            document.getElementById('chat-section').style.display = 'none';
-            document.getElementById('gate-section').style.display = 'none';
-            document.getElementById('avatar-section').style.display = 'flex';
+        function submitEmail(e) {
+            e.preventDefault();
+            const name = document.getElementById('gate-name').value;
+            const email = document.getElementById('gate-email').value;
+            console.log('Lead captured:', { name, email });
+            activateAvatar();
+            closePanel();
+        }
+        function activateAvatar() {
+            document.getElementById('avatar-page').style.display = 'flex';
+            document.body.style.overflow = 'visible';
             loadAvatar();
         }
-
+        function closeAvatar() {
+            document.getElementById('avatar-page').style.display = 'none';
+            document.body.style.overflow = '';
+            hideEmailForm();
+        }
         function loadAvatar() {
             if (document.getElementById('olivio-frame').querySelector('script')) return;
             const script = document.createElement('script');
@@ -167,43 +265,79 @@
             document.getElementById('olivio-frame').appendChild(script);
         }
 
-        function submitGate(e) {
-            e.preventDefault();
-            showAvatar();
+        // ─── Chat ───
+        const responses = {
+            'zone': "L'Olio di Roma IGP viene prodotto nelle zone collinari del Lazio, un territorio che si estende tra la provincia di Roma e le aree limitrofe. Le olive vengono raccolte tra ottobre e dicembre, nel periodo di massima maturazione, e lavorate entro 24 ore dalla raccolta per garantire la massima qualita.",
+            'riconosco': "Per riconoscere un olio IGP autentico, cerca il bollino europeo blu e giallo sulla confezione. Ogni bottiglia certificata riporta un codice di tracciabilita che puoi verificare sul sito ufficiale olioromaigp.it. L'olio IGP di Roma ha un colore dal verde al giallo dorato e un sapore fruttato con note leggermente piccanti.",
+            'produttori': "Il Consorzio Olio di Roma IGP conta oltre 50 aziende certificate distribuite nel territorio laziale. Ogni produttore segue un rigido disciplinare di produzione che garantisce standard qualitativi elevati e tracciabilita completa dalla pianta alla bottiglia. Puoi consultare l'elenco completo su olioromaigp.it.",
+            'cultivar': "Le cultivar principali utilizzate per l'Olio di Roma IGP sono Itrana, Carboncella, Moraiolo, Leccino, Frantoio, Pendolino e Raja. La combinazione di queste varieta conferisce all'olio un profilo sensoriale unico: fruttato medio-intenso con note di carciofo, erba fresca e mandorla, e un retrogusto leggermente piccante e ammandorlato.",
+            'default': "L'Olio di Roma IGP e un prodotto d'eccellenza del territorio laziale, tutelato dal marchio di Indicazione Geografica Protetta dell'Unione Europea. Il Consorzio lavora per valorizzare questa tradizione secolare attraverso standard qualitativi rigorosi. Se hai domande specifiche su territorio, produttori o caratteristiche dell'olio, sono qui per aiutarti."
+        };
+
+        function getResponse(q) {
+            q = q.toLowerCase();
+            if (q.includes('zona') || q.includes('zone') || q.includes('produzion') || q.includes('dove') || q.includes('territorio') || q.includes('produc') || q.includes('raccol') || q.includes('collin')) return responses['zone'];
+            if (q.includes('produttor') || q.includes('aziend') || q.includes('consorzio') || q.includes('chi sono') || q.includes('frantoio')) return responses['produttori'];
+            if (q.includes('cultivar') || q.includes('varieta') || q.includes('oliva') || q.includes('sapore') || q.includes('caratteristic') || q.includes('gusto') || q.includes('fruttato')) return responses['cultivar'];
+            if (q.includes('riconosc') || q.includes('igp') || q.includes('autentic') || q.includes('certific') || q.includes('bollino') || q.includes('marchio')) return responses['riconosco'];
+            return responses['default'];
         }
 
-        // Chat
-        const responses = [
-            "L'Olio di Roma IGP viene prodotto nelle zone collinari del Lazio. Le olive vengono raccolte tra ottobre e dicembre.",
-            "Il Consorzio conta oltre 50 aziende certificate con standard qualitativi elevati e tracciabilità completa.",
-            "Le cultivar principali sono Itrana, Carboncella, Moraiolo e Leccino. L'olio ha un sapore fruttato con note piccanti.",
-            "Per riconoscere un olio IGP autentico, cerca il bollino europeo e verifica il produttore su olioromaigp.it."
-        ];
+        function getTime() {
+            const n = new Date();
+            return n.getHours().toString().padStart(2,'0') + ':' + n.getMinutes().toString().padStart(2,'0');
+        }
 
         function addMsg(text, isUser) {
-            const div = document.createElement('div');
-            div.className = 'message ' + (isUser ? 'user' : 'assistant');
-            div.innerHTML = isUser 
-                ? '<div class="msg-content">' + text + '</div>'
-                : '<img src="olivio-avatar.jpg" class="msg-avatar"><div class="msg-content">' + text + '</div>';
-            document.getElementById('messages').appendChild(div);
-            document.getElementById('messages').scrollTop = 99999;
+            const box = document.getElementById('messages');
+            const d = document.createElement('div');
+            d.className = 'message ' + (isUser ? 'user' : 'assistant') + ' animate-in';
+            d.innerHTML = isUser
+                ? '<div class="msg-bubble"><div class="msg-content">' + text + '</div><span class="msg-time">' + getTime() + '</span></div>'
+                : '<img src="olivio-head.jpg" alt="" class="msg-avatar"><div class="msg-bubble"><div class="msg-content">' + text + '</div><span class="msg-time">' + getTime() + '</span></div>';
+            box.appendChild(d);
+            box.scrollTo({ top: box.scrollHeight, behavior: 'smooth' });
+        }
+
+        function showTyping() {
+            const box = document.getElementById('messages');
+            const d = document.createElement('div');
+            d.className = 'message assistant animate-in';
+            d.id = 'typing-indicator';
+            d.innerHTML = '<img src="olivio-head.jpg" alt="" class="msg-avatar"><div class="msg-bubble typing-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+            box.appendChild(d);
+            box.scrollTo({ top: box.scrollHeight, behavior: 'smooth' });
+        }
+
+        function removeTyping() {
+            const el = document.getElementById('typing-indicator');
+            if (el) el.remove();
         }
 
         function askQuestion(q) {
-            document.querySelector('.quick-questions').style.display = 'none';
             addMsg(q, true);
-            setTimeout(() => addMsg(responses[Math.floor(Math.random()*responses.length)], false), 800);
+            showTyping();
+            setTimeout(() => { removeTyping(); addMsg(getResponse(q), false); }, 800 + Math.random() * 700);
         }
 
         function sendMessage() {
             const input = document.getElementById('chat-input');
             if (!input.value.trim()) return;
-            document.querySelector('.quick-questions').style.display = 'none';
-            addMsg(input.value, true);
+            const text = input.value.trim();
             input.value = '';
-            setTimeout(() => addMsg(responses[Math.floor(Math.random()*responses.length)], false), 800);
+            document.getElementById('quick-questions').classList.add('collapsed');
+            addMsg(text, true);
+            showTyping();
+            setTimeout(() => {
+                removeTyping();
+                addMsg(getResponse(text), false);
+                document.getElementById('quick-questions').classList.remove('collapsed');
+            }, 800 + Math.random() * 700);
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => document.getElementById('chat-input').focus(), 400);
+        });
     </script>
 </body>
 </html>
