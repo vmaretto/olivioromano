@@ -360,7 +360,7 @@ main {
     position: fixed;
     inset: 0;
     top: 52px;
-    bottom: 0;
+    bottom: 36px;
     z-index: 150;
     background: var(--bg);
     align-items: center;
@@ -731,13 +731,13 @@ main {
 /* ─── FOOTER ─── */
 
 footer {
-    background: var(--white);
-    border-top: 1px solid var(--border);
+    background: var(--primary-dark);
+    border-top: none;
     text-align: center;
-    padding: 0.55rem 1rem;
+    padding: 0.75rem 1rem;
     flex-shrink: 0;
 }
-footer p { font-size: 0.68rem; color: var(--text-faint); }
+footer p { font-size: 0.68rem; color: rgba(255,255,255,0.85); }
 
 /* ─── ANIMATIONS ─── */
 
