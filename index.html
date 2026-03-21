@@ -20,11 +20,94 @@
     </header>
 
     <main>
-        <section class="avatar-section">
+        <!-- LANDING -->
+        <section id="landing-section" class="avatar-section">
             <div class="intro">
                 <h1>Ciao, sono <span>Olivio Romano</span></h1>
                 <p>Il tuo assistente virtuale per scoprire tutto sull'Olio di Roma IGP.</p>
                 <p>Chiedimi informazioni sulla produzione, le aziende certificate e la tradizione dell'olio extravergine del nostro territorio.</p>
+                <div class="features">
+                    <div class="feature">🫒 Territorio</div>
+                    <div class="feature">🏆 Qualità IGP</div>
+                    <div class="feature">👨‍🌾 Produttori</div>
+                </div>
+                <div class="cta-buttons">
+                    <button class="cta-btn cta-primary" onclick="showChat()">
+                        💬 Chatta con Olivio
+                        <span class="badge-free">Gratuito</span>
+                    </button>
+                    <button class="cta-btn cta-secondary" onclick="showGate()">
+                        🎥 Parla con l'Avatar
+                        <span class="badge-premium">Premium</span>
+                    </button>
+                </div>
+            </div>
+            <div class="preview-card">
+                <img src="olivio-avatar.jpg" alt="Olivio Romano" class="preview-img">
+                <p class="preview-label">Olivio Romano</p>
+            </div>
+        </section>
+
+        <!-- CHAT -->
+        <section id="chat-section" class="chat-section" style="display:none">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <button onclick="showLanding()">← Indietro</button>
+                    <div class="chat-title">
+                        <img src="olivio-avatar.jpg" alt="" class="chat-avatar-img">
+                        <div>
+                            <strong>Olivio Romano</strong>
+                            <span>Online</span>
+                        </div>
+                    </div>
+                    <span class="chat-badge">💬 Chat</span>
+                </div>
+                <div class="messages" id="messages">
+                    <div class="message assistant">
+                        <img src="olivio-avatar.jpg" alt="" class="msg-avatar">
+                        <div class="msg-content">
+                            Ciao! Sono Olivio Romano, il tuo assistente per l'Olio di Roma IGP. 🫒<br><br>
+                            Cosa vorresti sapere? Posso parlarti del territorio, dei produttori certificati, o delle caratteristiche dell'olio.
+                        </div>
+                    </div>
+                </div>
+                <div class="quick-questions">
+                    <button onclick="askQuestion('Quali sono le zone di produzione?')">Zone di produzione</button>
+                    <button onclick="askQuestion('Come riconosco un olio IGP?')">Riconoscere IGP</button>
+                    <button onclick="askQuestion('Chi sono i produttori?')">Produttori</button>
+                </div>
+                <div class="input-area">
+                    <input type="text" id="chat-input" placeholder="Scrivi un messaggio..." onkeypress="if(event.key==='Enter')sendMessage()">
+                    <button onclick="sendMessage()">Invia</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- EMAIL GATE -->
+        <section id="gate-section" class="gate-section" style="display:none">
+            <div class="gate-card">
+                <button class="gate-back" onclick="showLanding()">← Indietro</button>
+                <img src="olivio-avatar.jpg" alt="Olivio" class="gate-avatar">
+                <h2>Parla con Olivio Romano</h2>
+                <p>Accedi all'avatar interattivo per un'esperienza immersiva.</p>
+                <form onsubmit="submitGate(event)">
+                    <input type="text" id="gate-name" placeholder="Il tuo nome (opzionale)">
+                    <input type="email" id="gate-email" placeholder="La tua email" required>
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        Accetto il trattamento dati
+                    </label>
+                    <button type="submit">Accedi all'Avatar →</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- AVATAR PREMIUM -->
+        <section id="avatar-section" class="avatar-section" style="display:none">
+            <div class="intro">
+                <button class="back-btn-inline" onclick="showLanding()">← Indietro</button>
+                <h1>Parla con <span>Olivio Romano</span></h1>
+                <p>Clicca sul microfono per iniziare la conversazione.</p>
                 <div class="features">
                     <div class="feature">🫒 Territorio</div>
                     <div class="feature">🏆 Qualità IGP</div>
@@ -39,15 +122,88 @@
         <p>© Copyright 2026 - CONSORZIO OLIO DI ROMA IGP | C.F.: 96526190580 | REA: RM-1668364 | Privacy & Cookie Policy</p>
     </footer>
 
-    <!-- D-ID Avatar -->
-    <script type="module"
-        src="https://agent.d-id.com/v2/index.js"
-        data-mode="full"
-        data-client-key="Z29vZ2xlLW9hdXRoMnwxMDc3Nzg5MzU1NDIxMDc4MjMwMjU6bW5fZmdGRVQ5Zk1QbW1fUFJ1dUtJ"
-        data-agent-id="v2_agt_AvotBcRU"
-        data-name="did-agent"
-        data-monitor="true"
-        data-target-id="olivio-frame">
+    <!-- D-ID Avatar (caricato solo quando serve) -->
+    <script>
+        function showLanding() {
+            document.getElementById('landing-section').style.display = 'flex';
+            document.getElementById('chat-section').style.display = 'none';
+            document.getElementById('gate-section').style.display = 'none';
+            document.getElementById('avatar-section').style.display = 'none';
+        }
+
+        function showChat() {
+            document.getElementById('landing-section').style.display = 'none';
+            document.getElementById('chat-section').style.display = 'flex';
+            document.getElementById('gate-section').style.display = 'none';
+            document.getElementById('avatar-section').style.display = 'none';
+            document.getElementById('chat-input').focus();
+        }
+
+        function showGate() {
+            document.getElementById('landing-section').style.display = 'none';
+            document.getElementById('chat-section').style.display = 'none';
+            document.getElementById('gate-section').style.display = 'flex';
+            document.getElementById('avatar-section').style.display = 'none';
+        }
+
+        function showAvatar() {
+            document.getElementById('landing-section').style.display = 'none';
+            document.getElementById('chat-section').style.display = 'none';
+            document.getElementById('gate-section').style.display = 'none';
+            document.getElementById('avatar-section').style.display = 'flex';
+            loadAvatar();
+        }
+
+        function loadAvatar() {
+            if (document.getElementById('olivio-frame').querySelector('script')) return;
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'https://agent.d-id.com/v2/index.js';
+            script.setAttribute('data-mode', 'full');
+            script.setAttribute('data-client-key', 'Z29vZ2xlLW9hdXRoMnwxMDc3Nzg5MzU1NDIxMDc4MjMwMjU6bW5fZmdGRVQ5Zk1QbW1fUFJ1dUtJ');
+            script.setAttribute('data-agent-id', 'v2_agt_AvotBcRU');
+            script.setAttribute('data-name', 'did-agent');
+            script.setAttribute('data-monitor', 'true');
+            document.getElementById('olivio-frame').appendChild(script);
+        }
+
+        function submitGate(e) {
+            e.preventDefault();
+            showAvatar();
+        }
+
+        // Chat
+        const responses = [
+            "L'Olio di Roma IGP viene prodotto nelle zone collinari del Lazio. Le olive vengono raccolte tra ottobre e dicembre.",
+            "Il Consorzio conta oltre 50 aziende certificate con standard qualitativi elevati e tracciabilità completa.",
+            "Le cultivar principali sono Itrana, Carboncella, Moraiolo e Leccino. L'olio ha un sapore fruttato con note piccanti.",
+            "Per riconoscere un olio IGP autentico, cerca il bollino europeo e verifica il produttore su olioromaigp.it."
+        ];
+
+        function addMsg(text, isUser) {
+            const div = document.createElement('div');
+            div.className = 'message ' + (isUser ? 'user' : 'assistant');
+            div.innerHTML = isUser 
+                ? '<div class="msg-content">' + text + '</div>'
+                : '<img src="olivio-avatar.jpg" class="msg-avatar"><div class="msg-content">' + text + '</div>';
+            document.getElementById('messages').appendChild(div);
+            document.getElementById('messages').scrollTop = 99999;
+        }
+
+        function askQuestion(q) {
+            document.querySelector('.quick-questions').style.display = 'none';
+            addMsg(q, true);
+            setTimeout(() => addMsg(responses[Math.floor(Math.random()*responses.length)], false), 800);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            if (!input.value.trim()) return;
+            document.querySelector('.quick-questions').style.display = 'none';
+            addMsg(input.value, true);
+            input.value = '';
+            setTimeout(() => addMsg(responses[Math.floor(Math.random()*responses.length)], false), 800);
+        }
     </script>
 </body>
 </html>
