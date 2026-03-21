@@ -55,7 +55,7 @@
     </main>
 
     <!-- CHAT VIEW -->
-    <main id="chat-view" class="hidden">
+    <main id="chat-view" style="display:none">
         <div class="chat-container">
             <div class="chat-header">
                 <button class="back-btn" onclick="showLanding()">← Indietro</button>
@@ -93,7 +93,7 @@
     </main>
 
     <!-- EMAIL GATE VIEW -->
-    <main id="email-gate-view" class="hidden">
+    <main id="email-gate-view" style="display:none">
         <div class="gate-card">
             <button class="back-btn-floating" onclick="showLanding()">← Indietro</button>
             <div class="gate-content">
@@ -128,7 +128,7 @@
     </main>
 
     <!-- AVATAR VIEW -->
-    <main id="avatar-view" class="hidden">
+    <main id="avatar-view" style="display:none">
         <section class="avatar-section">
             <div class="intro">
                 <button class="back-btn" onclick="showLanding()">← Indietro</button>
@@ -152,31 +152,31 @@
     <script>
         // View management
         function hideAllViews() {
-            document.getElementById('landing-view').classList.add('hidden');
-            document.getElementById('chat-view').classList.add('hidden');
-            document.getElementById('email-gate-view').classList.add('hidden');
-            document.getElementById('avatar-view').classList.add('hidden');
+            document.getElementById('landing-view').style.display = 'none';
+            document.getElementById('chat-view').style.display = 'none';
+            document.getElementById('email-gate-view').style.display = 'none';
+            document.getElementById('avatar-view').style.display = 'none';
         }
 
         function showLanding() {
             hideAllViews();
-            document.getElementById('landing-view').classList.remove('hidden');
+            document.getElementById('landing-view').style.display = 'flex';
         }
 
         function showChat() {
             hideAllViews();
-            document.getElementById('chat-view').classList.remove('hidden');
+            document.getElementById('chat-view').style.display = 'flex';
             document.getElementById('chat-input').focus();
         }
 
         function showEmailGate() {
             hideAllViews();
-            document.getElementById('email-gate-view').classList.remove('hidden');
+            document.getElementById('email-gate-view').style.display = 'flex';
         }
 
         function showAvatar(email, name) {
             hideAllViews();
-            document.getElementById('avatar-view').classList.remove('hidden');
+            document.getElementById('avatar-view').style.display = 'flex';
             document.getElementById('user-info').textContent = `Benvenuto, ${name || 'visitatore'}!`;
             
             // Load D-ID avatar
