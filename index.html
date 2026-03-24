@@ -240,13 +240,9 @@
                 <div class="survey-question">
                     <label>Vuoi ricevere informazioni sul Consorzio?</label>
                     <div class="survey-options">
-                        <a href="https://www.olioromaigp.it/contatti" target="_blank" class="survey-option survey-contact-btn">✅ Sì, contattaci</a>
-                        <button type="button" class="survey-option survey-no-btn" onclick="markNoThanks()">❌ No, grazie</button>
+                        <a href="https://www.olioromaigp.it/contatti" target="_blank" class="survey-option survey-contact-btn" onclick="submitAndClose()">✅ Sì, contattaci</a>
+                        <button type="button" class="survey-option survey-no-btn" onclick="submitAndClose()">❌ No, grazie</button>
                     </div>
-                </div>
-                <div class="survey-actions">
-                    <button type="button" class="survey-skip" onclick="closeSurvey()">Salta</button>
-                    <button type="submit" class="survey-submit">Invia</button>
                 </div>
             </form>
         </div>
@@ -312,9 +308,34 @@
             document.getElementById('survey-form').reset();
         }
 
-        function markNoThanks() {
-            // Visualmente conferma la scelta
-            document.querySelectorAll('.survey-no-btn').forEach(btn => btn.classList.add('selected'));
+        async function submitAndClose() {
+            const form = document.getElementById('survey-form');
+            const userType = form.user_type?.value || 'non_specificato';
+            const foundUseful = form.found_useful?.value === 'true';
+            
+            const data = {
+                user_type: userType,
+                found_useful: foundUseful,
+                wants_info: false,
+                user_agent: navigator.userAgent
+            };
+
+            try {
+                await fetch(SUPABASE_URL + '/rest/v1/consorzio_survey', {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': 'Bearer ' + SUPABASE_KEY,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(data)
+                });
+            } catch (err) {
+                console.error('Survey error:', err);
+            }
+
+            closeSurvey();
         }
 
         async function submitSurvey(e) {
