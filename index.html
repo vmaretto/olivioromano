@@ -288,9 +288,8 @@
         }
         function submitEmail(e) {
             e.preventDefault();
-            const name = document.getElementById('gate-name').value;
-            const email = document.getElementById('gate-email').value;
-            console.log('Lead captured:', { name, email });
+            const nickname = document.getElementById('gate-name').value;
+            console.log('User nickname:', nickname);
             activateAvatar();
             closePanel();
         }
