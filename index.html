@@ -276,10 +276,12 @@
             document.getElementById('email-form').style.display = 'none';
             document.getElementById('upgrade-banner').style.display = 'flex';
         }
+        let userNickname = '';
+        
         function submitEmail(e) {
             e.preventDefault();
-            const nickname = document.getElementById('gate-name').value;
-            console.log('User nickname:', nickname);
+            userNickname = document.getElementById('gate-name').value;
+            console.log('User nickname:', userNickname);
             activateAvatar();
             closePanel();
         }
@@ -310,10 +312,10 @@
 
         function openContactAndClose() {
             window.open('https://www.olioromaigp.it/contatti', '_blank');
-            submitAndClose();
+            submitAndClose(true);
         }
 
-        async function submitAndClose() {
+        async function submitAndClose(wantsContact = false) {
             const form = document.getElementById('survey-form');
             const userType = form.user_type?.value || 'non_specificato';
             const foundUseful = form.found_useful?.value === 'true';
@@ -321,7 +323,8 @@
             const data = {
                 user_type: userType,
                 found_useful: foundUseful,
-                wants_info: false,
+                wants_info: wantsContact,
+                nickname: userNickname || null,
                 user_agent: navigator.userAgent
             };
 
