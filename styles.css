@@ -947,25 +947,30 @@ footer a:hover {
     background: var(--primary-dark);
 }
 
-.survey-contact {
-    margin-top: 16px;
+.survey-contact-btn {
+    background: var(--primary);
+    color: #fff !important;
+    text-decoration: none;
     text-align: center;
 }
 
-.survey-contact-btn {
-    display: inline-block;
-    padding: 10px 24px;
-    background: #8b1a1a;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background 0.2s;
+.survey-contact-btn:hover {
+    background: var(--primary-dark);
 }
 
-.survey-contact-btn:hover {
-    background: #6d1515;
+.survey-no-btn {
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+}
+
+.survey-no-btn:hover {
+    background: #e0e0e0;
+}
+
+.survey-no-btn.selected {
+    background: #ddd;
+    border-color: #999;
 }
 
 /* ─── ANIMATIONS ─── */

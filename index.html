@@ -239,8 +239,9 @@
                 </div>
                 <div class="survey-question">
                     <label>Vuoi ricevere informazioni sul Consorzio?</label>
-                    <div class="survey-contact">
-                        <a href="https://www.olioromaigp.it/contatti" target="_blank" class="survey-contact-btn">📞 Contattaci</a>
+                    <div class="survey-options">
+                        <a href="https://www.olioromaigp.it/contatti" target="_blank" class="survey-option survey-contact-btn">✅ Sì, contattaci</a>
+                        <button type="button" class="survey-option survey-no-btn" onclick="markNoThanks()">❌ No, grazie</button>
                     </div>
                 </div>
                 <div class="survey-actions">
@@ -309,6 +310,11 @@
         function closeSurvey() {
             document.getElementById('survey-modal').classList.remove('active');
             document.getElementById('survey-form').reset();
+        }
+
+        function markNoThanks() {
+            // Visualmente conferma la scelta
+            document.querySelectorAll('.survey-no-btn').forEach(btn => btn.classList.add('selected'));
         }
 
         async function submitSurvey(e) {
