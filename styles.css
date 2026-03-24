@@ -735,7 +735,7 @@ footer {
     background: var(--primary-dark);
     border-top: 1px solid rgba(255,255,255,0.1);
     text-align: center;
-    padding: 1.5rem 1rem 1rem;
+    padding: 0.4rem 1rem;
     flex-shrink: 0;
 }
 
@@ -743,7 +743,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -754,8 +754,9 @@ footer {
 }
 
 .footer-logo img {
-    height: 60px;
+    height: 30px;
     width: auto;
+    border-radius: 50%;
     opacity: 1;
     transition: opacity 0.2s;
 }
@@ -772,22 +773,23 @@ footer {
 }
 
 .footer-contributo {
-    padding: 0.5rem;
-    background: rgba(255,255,255,0.95);
-    border-radius: 8px;
+    padding: 0;
+    background: none;
 }
 
 .contributo-logo {
-    max-width: 260px;
+    max-width: 120px;
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 4px;
 }
 
 .footer-legal {
-    font-size: 0.68rem;
+    font-size: 0.6rem;
     color: rgba(255,255,255,0.7);
     margin: 0;
+    line-height: 1.4;
 }
 
 .footer-legal a {
