@@ -813,6 +813,168 @@ footer {
     }
 }
 
+/* ─── SURVEY MODAL ─── */
+
+.survey-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.survey-modal.active {
+    display: flex;
+}
+
+.survey-content {
+    background: #fff;
+    border-radius: 20px;
+    max-width: 420px;
+    width: 100%;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.survey-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.survey-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    border: 3px solid var(--primary);
+}
+
+.survey-header h2 {
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin: 0 0 6px;
+}
+
+.survey-header p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.survey-question {
+    margin-bottom: 20px;
+}
+
+.survey-question > label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.survey-options {
+    display: flex;
+    gap: 10px;
+}
+
+.survey-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.survey-option:hover {
+    border-color: var(--primary);
+    background: rgba(122,185,40,0.05);
+}
+
+.survey-option input {
+    display: none;
+}
+
+.survey-option:has(input:checked) {
+    border-color: var(--primary);
+    background: rgba(122,185,40,0.1);
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.survey-email {
+    margin-bottom: 20px;
+}
+
+.survey-email label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.survey-email input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.survey-email input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.survey-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.survey-skip {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #f0f0f0;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.survey-skip:hover {
+    background: #e0e0e0;
+}
+
+.survey-submit {
+    flex: 2;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.survey-submit:hover {
+    background: var(--primary-dark);
+}
+
 /* ─── ANIMATIONS ─── */
 
 .animate-in { animation: slideUp 0.3s ease-out; }
