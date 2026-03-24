@@ -390,9 +390,9 @@ main {
     display: none;
     position: fixed;
     inset: 0;
-    top: 52px;
+    top: 70px;
     bottom: 36px;
-    z-index: 150;
+    z-index: 50;
     background: var(--bg);
     align-items: center;
     justify-content: center;
