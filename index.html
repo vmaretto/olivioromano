@@ -240,7 +240,7 @@
                 <div class="survey-question">
                     <label>Vuoi ricevere informazioni sul Consorzio?</label>
                     <div class="survey-options">
-                        <a href="https://www.olioromaigp.it/contatti" target="_blank" class="survey-option survey-contact-btn" onclick="submitAndClose()">✅ Sì, contattaci</a>
+                        <button type="button" class="survey-option survey-contact-btn" onclick="openContactAndClose()">✅ Sì, contattaci</button>
                         <button type="button" class="survey-option survey-no-btn" onclick="submitAndClose()">❌ No, grazie</button>
                     </div>
                 </div>
@@ -306,6 +306,11 @@
         function closeSurvey() {
             document.getElementById('survey-modal').classList.remove('active');
             document.getElementById('survey-form').reset();
+        }
+
+        function openContactAndClose() {
+            window.open('https://www.olioromaigp.it/contatti', '_blank');
+            submitAndClose();
         }
 
         async function submitAndClose() {
