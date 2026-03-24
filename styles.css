@@ -59,6 +59,36 @@ header {
     z-index: 100;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-left .logo img {
+    height: 32px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.header-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--primary-dark);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-contributo {
+    height: 28px;
+    width: auto;
+    border-radius: 4px;
+}
+
 .logo img { height: 34px; display: block; }
 .logo-fallback { font-weight: 700; font-size: 0.9rem; color: var(--primary); }
 .logo-fallback strong { font-weight: 800; }
@@ -732,87 +762,27 @@ main {
 /* ─── FOOTER ─── */
 
 footer {
-    background: var(--primary-dark);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    background: #8b1a1a;
     text-align: center;
     padding: 0.4rem 1rem;
     flex-shrink: 0;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.footer-center {
-    text-align: center;
-    flex: 1;
-}
-
-.footer-logo img {
-    height: 30px;
-    width: auto;
-    border-radius: 50%;
-    opacity: 1;
-    transition: opacity 0.2s;
-}
-
-.footer-logo a:hover img {
-    opacity: 1;
-}
-
-.logo-fallback-footer {
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
-.footer-contributo {
-    padding: 0;
-    background: none;
-}
-
-.contributo-logo {
-    max-width: 120px;
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 4px;
-}
-
-.footer-legal {
-    font-size: 0.6rem;
-    color: rgba(255,255,255,0.7);
+footer p {
     margin: 0;
-    line-height: 1.4;
+    font-size: 0.65rem;
+    color: #fff;
+    line-height: 1;
+    white-space: nowrap;
 }
 
-.footer-legal a {
-    color: rgba(255,255,255,0.85);
+footer a {
+    color: #fff;
     text-decoration: none;
 }
 
-.footer-legal a:hover {
-    color: #fff;
+footer a:hover {
     text-decoration: underline;
-}
-
-@media (max-width: 700px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 1.25rem;
-    }
-    .footer-center {
-        order: 3;
-    }
-    .contributo-logo {
-        max-width: 220px;
-    }
 }
 
 /* ─── SURVEY MODAL ─── */
