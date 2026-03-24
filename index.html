@@ -71,20 +71,15 @@
                         </div>
                         <svg class="upgrade-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
                     </div>
-                    <!-- Email form (toggled) -->
+                    <!-- Nickname form (toggled) -->
                     <form class="email-form" id="email-form" onsubmit="submitEmail(event)">
                         <button type="button" class="email-back" onclick="hideEmailForm()">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
                             Indietro
                         </button>
                         <p class="email-title">Accedi all'Avatar interattivo</p>
-                        <p class="email-subtitle">Inserisci la tua email per attivare la video conversazione con Olivio Romano.</p>
-                        <input type="text" id="gate-name" placeholder="Il tuo nome (opzionale)" autocomplete="given-name">
-                        <input type="email" id="gate-email" placeholder="La tua email" required autocomplete="email">
-                        <label class="checkbox-row">
-                            <input type="checkbox" required>
-                            <span>Accetto il trattamento dati</span>
-                        </label>
+                        <p class="email-subtitle">Inserisci un nickname per iniziare la conversazione con Olivio Romano.</p>
+                        <input type="text" id="gate-name" placeholder="Il tuo nickname" required autocomplete="given-name">
                         <button type="submit" class="btn-submit">
                             Avvia Avatar
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
@@ -246,18 +241,14 @@
                     <label>Vuoi ricevere informazioni sul Consorzio?</label>
                     <div class="survey-options">
                         <label class="survey-option">
-                            <input type="radio" name="wants_info" value="true" required onchange="toggleEmailField(true)">
+                            <input type="radio" name="wants_info" value="true" required>
                             <span>✅ Sì, mi interessa</span>
                         </label>
                         <label class="survey-option">
-                            <input type="radio" name="wants_info" value="false" onchange="toggleEmailField(false)">
+                            <input type="radio" name="wants_info" value="false">
                             <span>❌ No, grazie</span>
                         </label>
                     </div>
-                </div>
-                <div class="survey-email" id="survey-email-field" style="display: none;">
-                    <label>La tua email</label>
-                    <input type="email" id="survey-email" placeholder="email@esempio.it">
                 </div>
                 <div class="survey-actions">
                     <button type="button" class="survey-skip" onclick="closeSurvey()">Salta</button>
@@ -326,21 +317,16 @@
         function closeSurvey() {
             document.getElementById('survey-modal').classList.remove('active');
             document.getElementById('survey-form').reset();
-            document.getElementById('survey-email-field').style.display = 'none';
-        }
-
-        function toggleEmailField(show) {
-            document.getElementById('survey-email-field').style.display = show ? 'block' : 'none';
         }
 
         async function submitSurvey(e) {
             e.preventDefault();
             const form = e.target;
+            const wantsInfo = form.wants_info.value === 'true';
             const data = {
                 user_type: form.user_type.value,
                 found_useful: form.found_useful.value === 'true',
-                wants_info: form.wants_info.value === 'true',
-                email: document.getElementById('survey-email').value || null,
+                wants_info: wantsInfo,
                 user_agent: navigator.userAgent
             };
 
@@ -360,7 +346,12 @@
             }
 
             closeSurvey();
-            alert('Grazie per il tuo feedback! 🫒');
+            
+            if (wantsInfo) {
+                window.open('https://www.olioromaigp.it/contatti', '_blank');
+            } else {
+                alert('Grazie per il tuo feedback! 🫒');
+            }
         }
         function loadAvatar() {
             if (document.querySelector('script[data-agent-id="v2_agt_AvotBcRU"]')) return;
