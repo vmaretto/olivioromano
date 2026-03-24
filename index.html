@@ -237,22 +237,12 @@
                         </label>
                     </div>
                 </div>
-                <div class="survey-question">
-                    <label>Vuoi ricevere informazioni sul Consorzio?</label>
-                    <div class="survey-options">
-                        <label class="survey-option">
-                            <input type="radio" name="wants_info" value="true" required>
-                            <span>✅ Sì, mi interessa</span>
-                        </label>
-                        <label class="survey-option">
-                            <input type="radio" name="wants_info" value="false">
-                            <span>❌ No, grazie</span>
-                        </label>
-                    </div>
-                </div>
                 <div class="survey-actions">
                     <button type="button" class="survey-skip" onclick="closeSurvey()">Salta</button>
                     <button type="submit" class="survey-submit">Invia</button>
+                </div>
+                <div class="survey-contact">
+                    <a href="https://www.olioromaigp.it/contatti" target="_blank" class="survey-contact-btn">📞 Contattaci</a>
                 </div>
             </form>
         </div>
@@ -321,11 +311,10 @@
         async function submitSurvey(e) {
             e.preventDefault();
             const form = e.target;
-            const wantsInfo = form.wants_info.value === 'true';
             const data = {
                 user_type: form.user_type.value,
                 found_useful: form.found_useful.value === 'true',
-                wants_info: wantsInfo,
+                wants_info: false,
                 user_agent: navigator.userAgent
             };
 
@@ -347,9 +336,6 @@
             closeSurvey();
             
             alert('Grazie per il tuo feedback! 🫒');
-            if (wantsInfo) {
-                window.open('https://www.olioromaigp.it/contatti', '_blank');
-            }
         }
         function loadAvatar() {
             if (document.querySelector('script[data-agent-id="v2_agt_AvotBcRU"]')) return;

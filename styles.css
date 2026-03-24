@@ -947,6 +947,27 @@ footer a:hover {
     background: var(--primary-dark);
 }
 
+.survey-contact {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.survey-contact-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #8b1a1a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.survey-contact-btn:hover {
+    background: #6d1515;
+}
+
 /* ─── ANIMATIONS ─── */
 
 .animate-in { animation: slideUp 0.3s ease-out; }
