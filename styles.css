@@ -52,7 +52,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5rem;
-    height: 52px;
+    height: 70px;
     background: var(--white);
     border-bottom: 1px solid var(--border);
     flex-shrink: 0;
@@ -66,7 +66,7 @@ header {
 }
 
 .header-left .logo img {
-    height: 32px;
+    height: 45px;
     width: auto;
     border-radius: 50%;
 }
@@ -84,7 +84,7 @@ header {
 }
 
 .header-contributo {
-    height: 28px;
+    height: 40px;
     width: auto;
     border-radius: 4px;
 }
@@ -764,13 +764,13 @@ main {
 footer {
     background: #8b1a1a;
     text-align: center;
-    padding: 0.4rem 1rem;
+    padding: 0.75rem 1rem;
     flex-shrink: 0;
 }
 
 footer p {
     margin: 0;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     color: #fff;
     line-height: 1;
     white-space: nowrap;
