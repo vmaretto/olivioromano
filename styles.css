@@ -88,6 +88,7 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 0;
+    position: relative;
 }
 
 .contributo-label {
@@ -95,7 +96,11 @@ header {
     font-weight: 500;
     color: var(--text-muted);
     letter-spacing: 0.3px;
-    margin-bottom: 2px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
 .header-contributo {
@@ -1094,8 +1099,12 @@ footer a:hover {
 }
 
 @media (max-width: 480px) {
-    header { padding: 0 0.85rem; height: 48px; }
-    .logo img { height: 28px; }
+    header { padding: 0 0.6rem; height: 70px; }
+    .header-left { gap: 0.4rem; }
+    .header-left .logo img { height: 40px; }
+    .header-contributo { height: 50px; }
+    .contributo-label { font-size: 0.35rem; }
+    .header-title { font-size: 0.7rem; }
 
     .msg-content { font-size: 0.84rem; padding: 0.7rem 0.85rem; }
 
