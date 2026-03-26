@@ -99,24 +99,26 @@ header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
+    justify-content: center;
+    gap: 1px;
     border-left: 1px solid var(--border);
     padding-left: 1rem;
     min-width: 0;
 }
 
 .contributo-label {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
     font-weight: 600;
     color: var(--text-muted);
     letter-spacing: 0.3px;
     text-transform: uppercase;
     line-height: 1;
     white-space: nowrap;
+    margin-bottom: 0;
 }
 
 .header-contributo {
-    height: 64px;
+    height: 58px;
     width: auto;
     display: block;
     max-width: 100%;
@@ -1036,10 +1038,10 @@ footer a:hover {
    ═══════════════════════════════════════════ */
 
 @media (max-width: 960px) {
-    :root { --header-h: 64px; }
+    :root { --header-h: 70px; }
 
     header { padding: 0 0.75rem; }
-    .header-left .logo img { height: 40px; width: 40px; }
+    .header-left .logo img { height: 44px; width: 44px; }
     .header-left { gap: 0.6rem; }
     .header-contributo-wrapper { padding-left: 0.6rem; }
     .header-contributo { height: 46px; }
@@ -1130,17 +1132,17 @@ footer a:hover {
    ═══════════════════════════════════════════ */
 
 @media (max-width: 480px) {
-    :root { --header-h: 56px; }
+    :root { --header-h: 62px; }
 
     header { padding: 0 0.5rem; }
-    .header-left { gap: 0.4rem; }
-    .header-left .logo img { height: 34px; width: 34px; }
+    .header-left { gap: 0.5rem; }
+    .header-left .logo img { height: 38px; width: 38px; }
     .header-contributo-wrapper {
-        padding-left: 0.4rem;
+        padding-left: 0.5rem;
         gap: 1px;
         border-left-width: 1px;
     }
-    .header-contributo { height: 34px; }
+    .header-contributo { height: 36px; }
     .contributo-label { font-size: 0.3rem; }
     .header-title { font-size: 0.65rem; }
 
