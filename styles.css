@@ -74,8 +74,8 @@ header {
 }
 
 .header-left .logo img {
-    height: 54px;
-    width: 54px;
+    height: 58px;
+    width: 58px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
@@ -116,7 +116,7 @@ header {
 }
 
 .header-contributo {
-    height: 42px;
+    height: 52px;
     width: auto;
     display: block;
     max-width: 100%;
@@ -1042,7 +1042,7 @@ footer a:hover {
     .header-left .logo img { height: 40px; width: 40px; }
     .header-left { gap: 0.6rem; }
     .header-contributo-wrapper { padding-left: 0.6rem; }
-    .header-contributo { height: 32px; }
+    .header-contributo { height: 38px; }
     .contributo-label { font-size: 0.4rem; }
     .header-title { font-size: 0.85rem; }
 
@@ -1140,7 +1140,7 @@ footer a:hover {
         gap: 1px;
         border-left-width: 1px;
     }
-    .header-contributo { height: 24px; }
+    .header-contributo { height: 28px; }
     .contributo-label { font-size: 0.3rem; }
     .header-title { font-size: 0.65rem; }
 
