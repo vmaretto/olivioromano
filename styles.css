@@ -62,14 +62,14 @@ header {
 
 .header-left {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 1rem;
     min-width: 0;
 }
 
 .header-left .logo {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     flex-shrink: 0;
 }
 
@@ -99,8 +99,8 @@ header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: 1px;
+    justify-content: flex-end;
+    gap: 0;
     border-left: 1px solid var(--border);
     padding-left: 1rem;
     min-width: 0;
@@ -111,7 +111,7 @@ header {
 }
 
 .header-contributo {
-    height: 58px;
+    height: 68px;
     width: auto;
     display: block;
     max-width: 100%;
