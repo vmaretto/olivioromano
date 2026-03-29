@@ -107,11 +107,18 @@ header {
 }
 
 .contributo-label {
-    display: none; /* text already in the image */
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+    margin-bottom: 2px;
 }
 
 .header-contributo {
-    height: 68px;
+    height: 52px;
     width: auto;
     display: block;
     max-width: 100%;
@@ -1082,8 +1089,8 @@ footer a:hover {
     .header-left .logo img { height: 44px; width: 44px; }
     .header-left { gap: 0.6rem; }
     .header-contributo-wrapper { padding-left: 0.6rem; }
-    .header-contributo { height: 46px; }
-    /* contributo-label hidden globally */
+    .header-contributo { height: 38px; }
+    .contributo-label { font-size: 0.45rem; }
     .header-title { font-size: 0.85rem; }
 
     .avatar-page {
@@ -1196,8 +1203,8 @@ footer a:hover {
         gap: 1px;
         border-left-width: 1px;
     }
-    .header-contributo { height: 36px; }
-    /* contributo-label hidden globally */
+    .header-contributo { height: 28px; }
+    .contributo-label { font-size: 0.35rem; }
 
     /* Fix 3: Hide title on phone to save space */
     .header-right { display: none; }
@@ -1255,8 +1262,8 @@ footer a:hover {
     :root { --header-h: 50px; }
 
     .header-left .logo img { height: 28px; width: 28px; }
-    .header-contributo { height: 20px; }
-    /* contributo-label hidden globally */
+    .header-contributo { height: 16px; }
+    .contributo-label { display: none; }
     .header-title { font-size: 0.6rem; }
 
     .msg-content { font-size: 0.8rem; padding: 0.55rem 0.7rem; }
