@@ -2,7 +2,7 @@ const OpenAI = require('openai');
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-const ASSISTANT_ID = 'asst_OeoUemG1yQnCoq8LFar862NN';
+const ASSISTANT_ID = 'asst_0eoUemG1yQnCoq8LFar862NN';
 
 module.exports = async function handler(req, res) {
     // CORS
