@@ -402,23 +402,8 @@
             document.body.appendChild(script);
         }
 
-        // ─── Chat ───
-        const responses = {
-            'zone': "L'Olio di Roma IGP viene prodotto nelle zone collinari del Lazio, un territorio che si estende tra la provincia di Roma e le aree limitrofe. Le olive vengono raccolte tra ottobre e dicembre, nel periodo di massima maturazione, e lavorate entro 24 ore dalla raccolta per garantire la massima qualita.",
-            'riconosco': "Per riconoscere un olio IGP autentico, cerca il bollino europeo blu e giallo sulla confezione. Ogni bottiglia certificata riporta un codice di tracciabilita che puoi verificare sul sito ufficiale olioromaigp.it. L'olio IGP di Roma ha un colore dal verde al giallo dorato e un sapore fruttato con note leggermente piccanti.",
-            'produttori': "Il Consorzio Olio di Roma IGP conta oltre 50 aziende certificate distribuite nel territorio laziale. Ogni produttore segue un rigido disciplinare di produzione che garantisce standard qualitativi elevati e tracciabilita completa dalla pianta alla bottiglia. Puoi consultare l'elenco completo su olioromaigp.it.",
-            'cultivar': "Le cultivar principali utilizzate per l'Olio di Roma IGP sono Itrana, Carboncella, Moraiolo, Leccino, Frantoio, Pendolino e Raja. La combinazione di queste varieta conferisce all'olio un profilo sensoriale unico: fruttato medio-intenso con note di carciofo, erba fresca e mandorla, e un retrogusto leggermente piccante e ammandorlato.",
-            'default': "L'Olio di Roma IGP e un prodotto d'eccellenza del territorio laziale, tutelato dal marchio di Indicazione Geografica Protetta dell'Unione Europea. Il Consorzio lavora per valorizzare questa tradizione secolare attraverso standard qualitativi rigorosi. Se hai domande specifiche su territorio, produttori o caratteristiche dell'olio, sono qui per aiutarti."
-        };
-
-        function getResponse(q) {
-            q = q.toLowerCase();
-            if (q.includes('zona') || q.includes('zone') || q.includes('produzion') || q.includes('dove') || q.includes('territorio') || q.includes('produc') || q.includes('raccol') || q.includes('collin')) return responses['zone'];
-            if (q.includes('produttor') || q.includes('aziend') || q.includes('consorzio') || q.includes('chi sono') || q.includes('frantoio')) return responses['produttori'];
-            if (q.includes('cultivar') || q.includes('varieta') || q.includes('oliva') || q.includes('sapore') || q.includes('caratteristic') || q.includes('gusto') || q.includes('fruttato')) return responses['cultivar'];
-            if (q.includes('riconosc') || q.includes('igp') || q.includes('autentic') || q.includes('certific') || q.includes('bollino') || q.includes('marchio')) return responses['riconosco'];
-            return responses['default'];
-        }
+        // ─── Chat (OpenAI Assistants API) ───
+        let chatThreadId = null;
 
         function getTime() {
             const n = new Date();
@@ -429,9 +414,11 @@
             const box = document.getElementById('messages');
             const d = document.createElement('div');
             d.className = 'message ' + (isUser ? 'user' : 'assistant') + ' animate-in';
+            // Convert markdown-style bold and newlines for assistant messages
+            const formatted = isUser ? text : text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             d.innerHTML = isUser
-                ? '<div class="msg-bubble"><div class="msg-content">' + text + '</div><span class="msg-time">' + getTime() + '</span></div>'
-                : '<img src="olivio-head.jpg" alt="" class="msg-avatar"><div class="msg-bubble"><div class="msg-content">' + text + '</div><span class="msg-time">' + getTime() + '</span></div>';
+                ? '<div class="msg-bubble"><div class="msg-content">' + formatted + '</div><span class="msg-time">' + getTime() + '</span></div>'
+                : '<img src="olivio-head.jpg" alt="" class="msg-avatar"><div class="msg-bubble"><div class="msg-content">' + formatted + '</div><span class="msg-time">' + getTime() + '</span></div>';
             box.appendChild(d);
             box.scrollTo({ top: box.scrollHeight, behavior: 'smooth' });
         }
@@ -451,25 +438,52 @@
             if (el) el.remove();
         }
 
-        function askQuestion(q) {
-            addMsg(q, true);
-            showTyping();
-            setTimeout(() => { removeTyping(); addMsg(getResponse(q), false); }, 800 + Math.random() * 700);
+        async function callAssistant(message) {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message, threadId: chatThreadId })
+            });
+            if (!res.ok) throw new Error('API error');
+            const data = await res.json();
+            chatThreadId = data.threadId;
+            // Clean up source annotations like 【4:0†source】
+            return data.reply.replace(/【.*?】/g, '');
         }
 
-        function sendMessage() {
+        async function askQuestion(q) {
+            addMsg(q, true);
+            showTyping();
+            try {
+                const reply = await callAssistant(q);
+                removeTyping();
+                addMsg(reply, false);
+            } catch (e) {
+                removeTyping();
+                addMsg("Mi dispiace, si è verificato un errore. Riprova tra qualche istante.", false);
+            }
+        }
+
+        async function sendMessage() {
             const input = document.getElementById('chat-input');
             if (!input.value.trim()) return;
             const text = input.value.trim();
             input.value = '';
+            input.disabled = true;
             document.getElementById('quick-questions').classList.add('collapsed');
             addMsg(text, true);
             showTyping();
-            setTimeout(() => {
+            try {
+                const reply = await callAssistant(text);
                 removeTyping();
-                addMsg(getResponse(text), false);
-                document.getElementById('quick-questions').classList.remove('collapsed');
-            }, 800 + Math.random() * 700);
+                addMsg(reply, false);
+            } catch (e) {
+                removeTyping();
+                addMsg("Mi dispiace, si è verificato un errore. Riprova tra qualche istante.", false);
+            }
+            input.disabled = false;
+            input.focus();
+            document.getElementById('quick-questions').classList.remove('collapsed');
         }
 
         window.addEventListener('DOMContentLoaded', () => {
